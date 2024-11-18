@@ -1,26 +1,32 @@
 # **AI-Futoshiki**
 
 ## **Overview**
-This project is an AI-based solver for the Futoshiki puzzle, a logic puzzle that involves placing numbers on a grid while adhering to given constraints. The program uses advanced algorithms to solve puzzles efficiently while providing runtime statistics.
+This project implements an AI-based solver for the Futoshiki puzzle. The puzzle involves placing numbers on a grid while satisfying given inequalities between cells. The program supports input parsing, solving puzzles using backtracking with forward checking, and providing runtime statistics.
 
 ## **Features**
-- Solves Futoshiki puzzles of various sizes and complexities.
-- Implements backtracking with optimizations like Minimum Remaining Value (MRV) and forward checking.
-- Reports runtime statistics, including the number of iterations and backtracks.
-- Flexible design to accommodate puzzles with custom constraints.
+- Handles Futoshiki puzzles with any size up to 9x9.
+- Implements backtracking with forward checking to enforce constraints.
+- Supports command-line inputs or batch processing of puzzles from a file.
+- Outputs runtime statistics including mean, min, max, and standard deviation of runtimes.
 
-## **Project Structure**
-Here’s a breakdown of the key files:
-
-- **`FutoshikiSolver.py`**: Core logic for solving Futoshiki puzzles using backtracking and heuristics.
-- **`ConstraintChecker.py`**: Validates constraints during the solving process.
-- **`PuzzleParser.py`**: Parses puzzle inputs from files or user input.
-- **`StatisticsCollector.py`**: Tracks runtime performance and outputs statistics.
-- **`README.md`**: Documentation for the project (this file).
+## **How the Board Works**
+- The board is represented as a dictionary with string keys and integer values.
+  - **Variables**: Each cell is identified by a row and column (e.g., `A1`).
+  - **Empty Cells**: Represented by `0`.
+  - **Inequalities**:
+    - `A*1 = '<'` means the value at `A1` must be less than the value at `B1`.
+    - `A1* = '>'` means the value at `A1` is greater than the value at `A2`.
+  - **Empty Inequalities**: Represented by `'-'`
 
 ## **Installation**
 Clone the repository:
 ```bash
 git clone https://github.com/yourusername/ai-futoshiki.git
 cd ai-futoshiki
-run using python FutoshikiSolver.py --input puzzle.txt
+
+Solve a Single Puzzle: Provide a configuration string as input:
+python futoshiki.py <config_string>
+
+Batch Solve Puzzles: Place multiple configuration strings in a file (futoshiki_start.txt) and run:
+python futoshiki.py
+
